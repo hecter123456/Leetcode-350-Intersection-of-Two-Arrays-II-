@@ -1,4 +1,5 @@
 import unittest
+import collections
 
 class unitest(unittest.TestCase):
     def testNone(self):
@@ -14,20 +15,8 @@ class unitest(unittest.TestCase):
 
 class Solution():
     def intersect(self, nums1, nums2):
-        nums1.sort()
-        nums2.sort()
-        i, j = 0, 0
-        List = []
-        while(i < len(nums1) and j < len(nums2)):
-            if nums1[i] < nums2[j]:
-                i += 1
-            elif nums1[i] > nums2[j]:
-                j += 1
-            else:
-                List.append(nums1[i])
-                i += 1
-                j += 1
-        return List
+        C = collections.Counter
+        return list((C(nums1) & C(nums2)).elements())
 
 if __name__ == '__main__':
     unittest.main()
